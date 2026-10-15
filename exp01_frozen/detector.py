@@ -23,7 +23,12 @@ def main():
     os.environ.setdefault("YOLO_CONFIG_DIR", str(out / "yolo_settings"))
     os.environ.setdefault("PYTHONDONTWRITEBYTECODE", "1")
     sys.dont_write_bytecode = True
-    sys.path.insert(0, cfg["detector_repo"])
+    detector_repo = str(Path(cfg["detector_repo"]).expanduser().resolve())
+    sys.path.insert(0, detector_repo)
+    # DDP workers start fresh interpreters and inherit the environment, not sys.path.
+    inherited_paths = [p for p in os.environ.get("PYTHONPATH", "").split(os.pathsep)
+                       if p and p != detector_repo]
+    os.environ["PYTHONPATH"] = os.pathsep.join([detector_repo, *inherited_paths])
     from ultralytics import YOLO
     import torch
     if args.device != "cpu" and not torch.cuda.is_available():
