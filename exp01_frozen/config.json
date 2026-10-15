@@ -1,0 +1,23 @@
+{
+  "visdrone_root": "/data1/drone_datasets/VisDroneDataset/VisDrone-origin",
+  "uavdt_root": "/data1/drone_datasets/UAVDataset/UAV-YOLO-whole",
+  "detector_repo": "/data1/drone_datasets/YOLO-Master-v26.02",
+  "detector_python": "/data/ARK/anaconda/envs/ark/bin/python",
+  "seed": 20261015,
+  "detector_train_fraction": 0.65,
+  "detector_val_fraction": 0.10,
+  "observed_classes": [3, 5, 8],
+  "target_class": 0,
+  "imgsz": 960,
+  "candidate_conf": 0.01,
+  "evidence_conf": 0.25,
+  "nms_iou": 0.6,
+  "correct_iou": 0.5,
+  "ignore_ioa": 0.5,
+  "max_det": 1000,
+  "leaf_candidates": [7, 15],
+  "max_iter": 150,
+  "min_samples_leaf": 50,
+  "bootstrap_repeats": 1000,
+  "selection_fractions": [0.10, 0.25]
+}
